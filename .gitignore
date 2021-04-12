@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+react-creeper/node_modules
+react-creeper/.pnp
+react-creeper.pnp.js
+
+# testing
+react-creeper/coverage
+
+# production
+react-creeper/build
+
+# misc
+react-creeper/.DS_Store
+react-creeper/.env.local
+react-creeper/.env.development.local
+react-creeper/.env.test.local
+react-creeper/.env.production.local
+
+react-creeper/npm-debug.log*
+react-creeper/yarn-debug.log*
+react-creeper/yarn-error.log*
