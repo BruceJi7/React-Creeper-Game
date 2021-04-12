@@ -1,0 +1,37 @@
+table, tr, td {
+    border:none;
+    border-collapse: collapse;
+
+}
+
+.container {
+    width:var(--boardsize);
+    height:var(--boardsize);
+
+    background-color: blue;
+}
+
+.board {
+    margin:0;
+    padding: 0;
+    width:var(--boardsize);
+    height:var(--boardsize);
+
+    display:grid;
+    grid-template-columns: repeat(4, var(--cellsize));
+    grid-template-rows: repeat(4, var(--cellsize));
+}
+.row {
+    margin:0;
+    padding: 0;
+}
+
+.cell {
+    margin:0;
+    padding: 0;
+    height:var(--cellsize);
+    width:var(--cellsize);
+
+    background-color: red;
+
+}

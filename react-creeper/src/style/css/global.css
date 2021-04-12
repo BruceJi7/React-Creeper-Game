@@ -5,11 +5,18 @@ body {
     justify-content: center;
     align-items: center;
     margin:0;
+
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+
+    --boardsize:512px;
+    --cellsize:calc(var(--boardsize)/4);
 }
 
 .App {
     display:flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     
     background-image: url("../images/background.png");
     background-size: 1024px, 768px;
