@@ -1,7 +1,7 @@
 import {Switch, Route} from "react-router-dom"
 
 import Welcome from "../pages/Welcome/Welcome"
-import Game from "../pages/Game/Game"
+import Game from "../pages/Game"
 
 import "../style/css/global.css"
 

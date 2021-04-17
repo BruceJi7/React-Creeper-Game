@@ -25,13 +25,3 @@ table, tr, td {
     margin:0;
     padding: 0;
 }
-
-.cell {
-    margin:0;
-    padding: 0;
-    height:var(--cellsize);
-    width:var(--cellsize);
-
-    background-color: red;
-
-}

@@ -1,5 +1,7 @@
 import {useState, useEffect} from "react"
 
+import GameCell from "./GameCell"
+
 import {shuffleArray} from "../../utility/functions"
 
 import style from "./Game.module.css"
@@ -21,8 +23,7 @@ const Game = () => {
 
     return <div className={style.container}>
         <div className={style.board}>
-            {cells && cells.map(c => <div className={style.cell}>{c}</div>)}
-
+            {cells && cells.map(c => <GameCell key={c} test={c}/>)}
         </div>
     </div>
 }

@@ -1,0 +1,14 @@
+
+.cell {
+    margin:0;
+    padding: 0;
+    height:var(--cellsize);
+    width:var(--cellsize);
+
+    background-color: red;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
