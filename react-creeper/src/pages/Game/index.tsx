@@ -11,19 +11,29 @@ import style from "./Game.module.css"
 
 const Game = () => {
 
-    const [cells, setCells] = useState<Array<string>|null>(null)
+    const [cells, setCells] = useState<Array<object>|null>(null)
 
+    function initialiseCells(){
+        const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"]
+        shuffleArray(letters)
+        let cells = letters.map(l => {return {image:l, isCreeper:false}})
+        const creepers = cells.slice(0,4).map(c => {return {...c, isCreeper:true}})
+        const safe = cells.slice(4)
+        cells = creepers.concat(safe)
+        shuffleArray(cells)
+        return cells   
+    }
     
     useEffect(()=> {
-        const cells = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"]
-        shuffleArray(cells)
+
+        const cells = initialiseCells()
         setCells(cells)
 
     }, [])
 
     return <div className={style.container}>
         <div className={style.board}>
-            {cells && cells.map(c => <GameCell key={c} test={c}/>)}
+            {cells && cells.map((c:any) => <GameCell key={c.image} image={c.image} isCreeper={c.isCreeper}/>)}j
         </div>
     </div>
 }

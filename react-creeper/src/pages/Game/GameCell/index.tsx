@@ -3,14 +3,29 @@ import {useState} from "react"
 import style from "./GameCell.module.css"
 
 type Props = {
-    test:string
+    image:string
+    isCreeper:boolean
+
 }
 
-function GameCell({test}: Props){
+function GameCell({image, isCreeper}: Props){
     
+    const [isRevealed, setRevealed]= useState<boolean>(false)
     
-    
-    return <div className={style.cell}>{test}</div>
+    if (isRevealed) {
+
+        if (isCreeper){
+            return <div className={style.creeperCard} onClick={() => setRevealed(true)}>&nbsp;</div> 
+        }
+
+        else {
+            return <div className={style.safeCard} onClick={() => setRevealed(true)}>&nbsp;</div>
+        }
+        
+    } else {
+        return <div className={style.hiddenCard} onClick={() => setRevealed(true)}>{image}</div>
+    }
+
 }
 
 export default GameCell
