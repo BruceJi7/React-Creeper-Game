@@ -1,5 +1,8 @@
 import {useState} from "react"
 
+
+import creeperImg from "../../../style/images/creeperHead.png"
+import cobbleImg from "../../../style/images/cobbleStone.png"
 import style from "./GameCell.module.css"
 
 type Props = {
@@ -15,11 +18,11 @@ function GameCell({image, isCreeper}: Props){
     if (isRevealed) {
 
         if (isCreeper){
-            return <div className={style.creeperCard} onClick={() => setRevealed(true)}>&nbsp;</div> 
+            return <div className={style.revealedCard} onClick={() => setRevealed(true)}><img src={creeperImg} alt="Safe"/></div> 
         }
 
         else {
-            return <div className={style.safeCard} onClick={() => setRevealed(true)}>&nbsp;</div>
+            return <div className={style.revealedCard} onClick={() => setRevealed(true)}><img src={cobbleImg} alt="Safe"/></div>
         }
         
     } else {

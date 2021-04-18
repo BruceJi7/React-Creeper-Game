@@ -7,8 +7,6 @@ table, tr, td {
 .container {
     width:var(--boardsize);
     height:var(--boardsize);
-
-    background-color: blue;
 }
 
 .board {

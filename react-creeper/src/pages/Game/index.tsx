@@ -33,7 +33,7 @@ const Game = () => {
 
     return <div className={style.container}>
         <div className={style.board}>
-            {cells && cells.map((c:any) => <GameCell key={c.image} image={c.image} isCreeper={c.isCreeper}/>)}j
+            {cells && cells.map((c:any) => <GameCell key={c.image} image={c.image} isCreeper={c.isCreeper}/>)}
         </div>
     </div>
 }
