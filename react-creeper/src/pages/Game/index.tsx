@@ -6,17 +6,17 @@ import {shuffleArray} from "../../utility/functions"
 
 import style from "./Game.module.css"
 
-
+import images from "../../defaultImages"
 
 
 const Game = () => {
 
     const [cells, setCells] = useState<Array<object>|null>(null)
 
-    function initialiseCells(){
-        const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"]
-        shuffleArray(letters)
-        let cells = letters.map(l => {return {image:l, isCreeper:false}})
+    function initialiseCells(imgArray:Array<string>){
+        const sessionImg = imgArray.slice(0,16)
+        shuffleArray(sessionImg)
+        let cells = sessionImg.map(l => {return {image:l, isCreeper:false}})
         const creepers = cells.slice(0,4).map(c => {return {...c, isCreeper:true}})
         const safe = cells.slice(4)
         cells = creepers.concat(safe)
@@ -26,7 +26,7 @@ const Game = () => {
     
     useEffect(()=> {
 
-        const cells = initialiseCells()
+        const cells = initialiseCells(images)
         setCells(cells)
 
     }, [])

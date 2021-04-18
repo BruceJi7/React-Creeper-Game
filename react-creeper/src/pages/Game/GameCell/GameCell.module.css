@@ -1,50 +1,8 @@
-
-.hiddenCard {
+.card {
     margin:0;
     padding: 0;
     height:var(--cellsize);
     width:var(--cellsize);
-
-    background-color: grey;
-
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.revealedCard {
-    margin:0;
-    padding: 0;
-    height:var(--cellsize);
-    width:var(--cellsize);
-
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.creeperCard {
-
-    margin:0;
-    padding: 0;
-    height:var(--cellsize);
-    width:var(--cellsize);
-
-    background-color: red;
-
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.safeCard {
-    margin:0;
-    padding: 0;
-    height:var(--cellsize);
-    width:var(--cellsize);
-
-    background-color: green;
 
     display:flex;
     justify-content: center;

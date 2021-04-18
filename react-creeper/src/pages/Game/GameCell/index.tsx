@@ -18,15 +18,15 @@ function GameCell({image, isCreeper}: Props){
     if (isRevealed) {
 
         if (isCreeper){
-            return <div className={style.revealedCard} onClick={() => setRevealed(true)}><img src={creeperImg} alt="Safe"/></div> 
+            return <div className={style.card} onClick={() => setRevealed(true)}><img src={creeperImg} alt="Bomb"/></div> 
         }
 
         else {
-            return <div className={style.revealedCard} onClick={() => setRevealed(true)}><img src={cobbleImg} alt="Safe"/></div>
+            return <div className={style.card} onClick={() => setRevealed(true)}><img src={cobbleImg} alt="Safe"/></div>
         }
         
     } else {
-        return <div className={style.hiddenCard} onClick={() => setRevealed(true)}>{image}</div>
+        return <div className={style.card} onClick={() => setRevealed(true)}><img src={image} alt="Unknown"/></div>
     }
 
 }
