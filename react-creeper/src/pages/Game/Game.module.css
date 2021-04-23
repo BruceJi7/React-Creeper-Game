@@ -23,3 +23,10 @@ table, tr, td {
     margin:0;
     padding: 0;
 }
+
+.statsCell {
+    display: flex;
+    height:100px;
+    justify-content: space-around;
+    width:100%;
+}
