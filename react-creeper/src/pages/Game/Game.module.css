@@ -1,32 +1,28 @@
-table, tr, td {
-    border:none;
-    border-collapse: collapse;
+.layout {
+    display: grid;
+    grid-template-columns: 256px 1fr 256px;
+    grid-template-rows: 128px 512px 128px;
 
-}
-
-.container {
-    width:var(--boardsize);
-    height:var(--boardsize);
+    height: 100%;
+    width:100%;
 }
 
 .board {
     margin:0;
     padding: 0;
-    width:var(--boardsize);
-    height:var(--boardsize);
-
     display:grid;
     grid-template-columns: repeat(4, var(--cellsize));
     grid-template-rows: repeat(4, var(--cellsize));
 }
-.row {
-    margin:0;
-    padding: 0;
+
+.header {
+    grid-column: 1 / span 3;
 }
 
-.statsCell {
+
+
+.stats {
     display: flex;
-    height:100px;
-    justify-content: space-around;
-    width:100%;
+   justify-content: space-around;
+
 }

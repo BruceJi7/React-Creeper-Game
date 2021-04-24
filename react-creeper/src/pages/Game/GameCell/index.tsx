@@ -9,17 +9,21 @@ type Props = {
   isCreeper: boolean;
   increment: () => void;
   reportCell: (cellType: string) => void;
+  currentTeam:string;
+  changeTeam:(newTeam:string) => void;
 };
 
-function GameCell({ image, isCreeper, increment, reportCell }: Props) {
+function GameCell({ image, isCreeper, increment, reportCell, currentTeam, changeTeam }: Props) {
   const [isRevealed, setRevealed] = useState<boolean>(false);
 
   function handleClick(isCreeper: boolean, isRevealed: boolean) {
     if (!isRevealed) {
       setRevealed(true);
       reportCell(isCreeper ? "creeper" : "safe");
+      changeTeam(currentTeam === "A"? "B" : "A")
       increment();
     }
+
   }
 
   if (isRevealed) {

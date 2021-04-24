@@ -13,6 +13,7 @@ const Game = () => {
   const [totalRevealed, setTotalRevealed] = useState<number>(0);
   const [previousCell, setPreviousCell] = useState<string | null>(null);
   const [isFinished, setFinished] = useState(false);
+  const [team, setTeam] = useState<string>(initialiseTeams()[0]);
 
   const creepersFoundRef = useRef(0);
 
@@ -29,6 +30,12 @@ const Game = () => {
     cells = creepers.concat(safe);
     shuffleArray(cells);
     return cells;
+  }
+
+  function initialiseTeams() {
+    const teams = ["A", "B"]
+    shuffleArray(teams)
+    return teams
   }
 
   function reportCreeper(cellType: string) {
@@ -52,7 +59,18 @@ const Game = () => {
   }, []);
 
   return (
-    <div className={style.container}>
+
+    <div className={style.layout}>
+
+     
+      
+      
+    <div className={style.header}></div>
+    <div className={style.teamAHouse}>
+      {team === "A" && "Your turn"}
+    </div>
+    <div className={style.board}>
+
       <div className={style.board}>
         {cells &&
           cells.map((c: any) => (
@@ -62,15 +80,30 @@ const Game = () => {
               reportCell={reportCreeper}
               image={c.image}
               isCreeper={c.isCreeper}
+              currentTeam={team}
+              changeTeam={setTeam}
             />
           ))}
       </div>
-      <div className={style.statsBoard}>
+
+    </div>
+    <div className={style.teamBHouse}>
+    {team === "B" && "Your turn"}
+    </div>
+    <div className={style.teamABase}></div>
+    <div className={style.stats}>
+
         <div className={style.total}>{totalRevealed}</div>
         <div className={style.total}>{creepersFoundRef.current}</div>
         <div className={style.previous}>{previousCell}</div>
         {isFinished && <div className={style.finished}>GAME OVER</div>}
-      </div>
+
+    </div>
+    <div className={style.teamBBase}></div>
+
+    
+    
+
     </div>
   );
 };
