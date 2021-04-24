@@ -12,8 +12,9 @@ const Game = () => {
   const [cells, setCells] = useState<Array<object> | null>(null);
   const [totalRevealed, setTotalRevealed] = useState<number>(0);
   const [previousCell, setPreviousCell] = useState<string | null>(null);
+  const [isFinished, setFinished] = useState(false);
 
-  const countRef = useRef(0)
+  const creepersFoundRef = useRef(0);
 
   function initialiseCells(imgArray: Array<string>) {
     const sessionImg = imgArray.slice(0, 16);
@@ -30,18 +31,25 @@ const Game = () => {
     return cells;
   }
 
-  function reportCreeper(cellType:string) {
-    if (cellType === "creeper"){
-        setPreviousCell("creeper")
-        countRef.current++
-    }  
+  function reportCreeper(cellType: string) {
+    setPreviousCell(cellType);
+    if (cellType === "creeper") {
+      creepersFoundRef.current++;
+    } 
+    checkGameOver()
+  }
+
+  function checkGameOver() {
+    console.log("score: ", creepersFoundRef.current)
+    if (creepersFoundRef.current >= 4 || totalRevealed >= 16) {
+      setFinished(true);
+    }
   }
 
   useEffect(() => {
     const cells = initialiseCells(images);
     setCells(cells);
   }, []);
-
 
   return (
     <div className={style.container}>
@@ -59,8 +67,9 @@ const Game = () => {
       </div>
       <div className={style.statsBoard}>
         <div className={style.total}>{totalRevealed}</div>
-        <div className={style.total}>{countRef.current}</div>
+        <div className={style.total}>{creepersFoundRef.current}</div>
         <div className={style.previous}>{previousCell}</div>
+        {isFinished && <div className={style.finished}>GAME OVER</div>}
       </div>
     </div>
   );
