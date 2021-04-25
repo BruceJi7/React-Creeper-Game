@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import style from "./Welcome.module.css";
 
 const Welcome = () => {
-  // const [teamAName, setTeamAName] = useState<string>("");
-  // const [teamBName, setTeamBName] = useState<string>("");
-
   return (
     <div className={style.layout}>
 
@@ -17,7 +14,7 @@ const Welcome = () => {
       <div className={style.teamAHouse}></div>
       <div className={style.board}>
            <div className={style.welcome}>Welcome to Creeper Game!</div>
-            <Link to="/game">Begin</Link>
+            <Link to="/game" className={style.link}>Begin</Link>
       </div>
       <div className={style.teamBHouse}></div>
       <div className={style.teamABase}></div>

@@ -1,5 +1,12 @@
+import { Link } from "react-router-dom";
 
-import {A, B, All} from "../../../style/images/winner"
+import A from "../../../style/images/winner/winTileA.png"
+
+import B from "../../../style/images/winner/winTileB.png"
+
+import All from "../../../style/images/winner/winTileAll.png"
+
+import style from "./GameOver.module.css";
 
 type ScoreType = {
   score: {
@@ -9,17 +16,25 @@ type ScoreType = {
 };
 
 function GameOver({ score }: ScoreType) {
+  console.log("Game Over: ", score);
 
-    console.log("Game Over: ", score)
-    
-    if (score["A"] > score["B"]){
-        return <img src={A} alt="Team A Wins!"/>;
+  let image;
 
-    } else if (score["B"] > score["A"]) {
-        return <img src={B} alt="Team B Wins!"/>;
-    } else {
-        return <img src={All} alt="Uhh both teams win!"/>;
-    }
+  if (score["A"] > score["B"]) {
+    image = A
+  } else if (score["B"] > score["A"]) {
+    image = B
+  } else {
+    image = All
+  }
+
+console.log(image)
+  return <div className={style.gameOver} style={{background: `url(${image})`}}>
+    <Link to="/" className={style.link}>
+        Play Again?
+    </Link>
+      
+  </div>;
 }
 
 export default GameOver;

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'minecrafty';
+    src: local('Minecraft Regular'), url('../fonts/1_MinecraftRegular1.woff') format('woff');
+}
+
 body {
     background-color: black;
     display:flex;
@@ -6,7 +11,7 @@ body {
     align-items: center;
     margin:0;
 
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "minecrafty";
     color: white;
 
     --boardsize:512px;

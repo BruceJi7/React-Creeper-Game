@@ -11,6 +11,31 @@
     grid-column: 1 / span 3;
 }
 
-.welcome {
-    font-size: large;
+.board{
+    height:100%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.welcome {
+    height:128px;
+    width:100%;
+    z-index:2;
+    font-size: 40pt;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+.link {
+    font-size: 30pt;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+.link:hover {
+    color:#ddd;
+}
+
