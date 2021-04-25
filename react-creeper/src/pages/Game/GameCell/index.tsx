@@ -7,42 +7,46 @@ import style from "./GameCell.module.css";
 type Props = {
   image: string;
   isCreeper: boolean;
-  increment: () => void;
-  reportCell: (cellType: string) => void;
-  currentTeam:string;
-  changeTeam:(newTeam:string) => void;
+  currentTeam: string;
+  doTurn: (isCreeper: boolean, currentTeam: string) => void;
 };
 
-function GameCell({ image, isCreeper, increment, reportCell, currentTeam, changeTeam }: Props) {
+function GameCell({ image, isCreeper, currentTeam, doTurn }: Props) {
   const [isRevealed, setRevealed] = useState<boolean>(false);
 
   function handleClick(isCreeper: boolean, isRevealed: boolean) {
     if (!isRevealed) {
       setRevealed(true);
-      reportCell(isCreeper ? "creeper" : "safe");
-      changeTeam(currentTeam === "A"? "B" : "A")
-      increment();
+      doTurn(isCreeper, currentTeam);
     }
-
   }
 
   if (isRevealed) {
     if (isCreeper) {
       return (
-        <div className={style.card} onClick={() => handleClick(isCreeper, isRevealed)}>
+        <div
+          className={style.card}
+          onClick={() => handleClick(isCreeper, isRevealed)}
+        >
           <img src={creeperImg} alt="Bomb" />
         </div>
       );
     } else {
       return (
-        <div className={style.card} onClick={() => handleClick(isCreeper, isRevealed)}>
+        <div
+          className={style.card}
+          onClick={() => handleClick(isCreeper, isRevealed)}
+        >
           <img src={cobbleImg} alt="Safe" />
         </div>
       );
     }
   } else {
     return (
-      <div className={style.card} onClick={() => handleClick(isCreeper, isRevealed)}>
+      <div
+        className={style.card}
+        onClick={() => handleClick(isCreeper, isRevealed)}
+      >
         <img src={image} alt="Unknown" />
       </div>
     );

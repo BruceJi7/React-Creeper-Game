@@ -1,11 +1,11 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import style from "./Welcome.module.css";
 
 const Welcome = () => {
-  const [teamAName, setTeamAName] = useState<string>("");
-  const [teamBName, setTeamBName] = useState<string>("");
+  // const [teamAName, setTeamAName] = useState<string>("");
+  // const [teamBName, setTeamBName] = useState<string>("");
 
   return (
     <div className={style.layout}>

@@ -19,7 +19,11 @@
     grid-column: 1 / span 3;
 }
 
-
+.house {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 .stats {
     display: flex;
