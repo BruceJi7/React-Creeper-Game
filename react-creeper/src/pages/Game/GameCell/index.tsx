@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import creeperImg from "../../../style/images/creeperHead.png";
 import cobbleImg from "../../../style/images/cobbleStone.png";
+
 import style from "./GameCell.module.css";
 
 type Props = {
@@ -15,7 +16,6 @@ function GameCell({ image, isCreeper, currentTeam, doTurn }: Props) {
   const [isRevealed, setRevealed] = useState<boolean>(false);
 
   function handleClick(isCreeper: boolean, isRevealed: boolean) {
-    console.log("Click: isCreeper = ", isCreeper)
     if (!isRevealed) {
       setRevealed(true);
       doTurn(isCreeper, currentTeam);

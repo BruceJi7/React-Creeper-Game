@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
+import useSound from "use-sound";
+
+import {safeSound, creeperSound, winSound} from "../../snd"
+
 import GameCell from "./GameCell";
 import House from "./House";
 
@@ -25,8 +29,12 @@ const Game = () => {
 
   const [score, setScore] = useState<ScoreType>({A:0, B:0})
 
-
   const creepersFoundRef = useRef(0);
+
+  
+  const [ playSafeSnd ] = useSound(safeSound);
+  const [ playCreeperSnd ] = useSound(creeperSound);
+  const [ playWinSnd ] = useSound(winSound);
 
   function initialiseCells(imgArray: Array<string>) {
     const sessionImg = imgArray.slice(0, 16);
@@ -63,15 +71,19 @@ const Game = () => {
     if (creepersFoundRef.current >= 4) {
       console.log("Win condition: All creepers found")
       setFinished(true);
+      playWinSnd()
     } else if (totalRevealed >= 16) {
       console.log("Win condition: All tiles revealed")
       setFinished(true);
+      playWinSnd()
     } else if (score["A"] >= 4) {
       console.log("Win condition: Team A's score")
       setFinished(true);
+      playWinSnd()
     } else if (score["B"] >= 4) {
       console.log("Win condition: Team B's score")
       setFinished(true);
+      playWinSnd()
     }
 
     
@@ -98,6 +110,12 @@ const Game = () => {
       if (bScore < 4){
         setTeam("A")
       }
+    }
+    if (isCreeper){
+      playCreeperSnd()
+    }
+    else {
+      playSafeSnd()
     }
     setTotalRevealed(totalRevealed + 1)
     setScore(newScore)
