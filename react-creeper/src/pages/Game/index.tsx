@@ -13,6 +13,7 @@ import style from "./Game.module.css";
 
 import images from "../../defaultImages";
 import GameOver from "./GameOver";
+import TurnIndicator from "./TurnIndicator";
 
 
 type ScoreType = {
@@ -134,8 +135,7 @@ const Game = () => {
       <div className={style.header}></div>
       <div className={style.house}>
 
-        <div className={style.turnIndicator}>{team === "A" && "Your turn"}</div>
-        <span>{score["A"]}</span>
+        <TurnIndicator isPlayerTurn={team === "A"}/>
         <House score={score["A"]} />
       </div>
       <div className={style.board}>
@@ -157,8 +157,7 @@ const Game = () => {
         </div>
       </div>
       <div className={style.house}>
-        <div className={style.turnIndicator}>{team === "B" && "Your turn"}</div>
-        <span>{score["B"]}</span>
+      <TurnIndicator isPlayerTurn={team === "B"}/>
         <House score={score["B"]} />
       </div>
       <div className={style.teamABase}></div>
