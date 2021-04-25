@@ -8,6 +8,7 @@ import { shuffleArray } from "../../utility/functions";
 import style from "./Game.module.css";
 
 import images from "../../defaultImages";
+import GameOver from "./GameOver";
 
 
 type ScoreType = {
@@ -53,44 +54,60 @@ const Game = () => {
     if (cellType === "creeper") {
       creepersFoundRef.current++;
     }
-    checkGameOver();
   }
 
-  function checkGameOver() {
-    console.log("score: ", creepersFoundRef.current);
-    if (creepersFoundRef.current >= 4 || totalRevealed >= 16) {
+  function checkGameOver(score:ScoreType) {
+    console.log("Creepers found: ", creepersFoundRef.current);
+    console.log("Total revealed: ", totalRevealed)
+    console.log("Current scores: ", score)
+    if (creepersFoundRef.current >= 4) {
+      console.log("Win condition: All creepers found")
+      setFinished(true);
+    } else if (totalRevealed >= 16) {
+      console.log("Win condition: All tiles revealed")
+      setFinished(true);
+    } else if (score["A"] >= 4) {
+      console.log("Win condition: Team A's score")
+      setFinished(true);
+    } else if (score["B"] >= 4) {
+      console.log("Win condition: Team B's score")
       setFinished(true);
     }
+
+    
   }
 
   function doTurn(isCreeper:boolean, currentTeam:string){
     reportCreeper(isCreeper ? "creeper" : "safe")
+
+    const newScore = {...score}
+
+
     if (currentTeam === "A"){
 
-      const aScore = isCreeper? 0:score["A"]+1
-      if (aScore >= 4){
-        setFinished(true)
-      } else {
-        setScore({...score, A:aScore})
-        setTeam("B")
+      const aScore = isCreeper? 0 : score["A"]+1
+      newScore["A"] = aScore
+      if (aScore < 4){
+          setTeam("B")
       }
 
     } else {
 
-      const bScore = isCreeper? 0:score["B"]+1
-      if (bScore >= 4){
-        setFinished(true)
-      } else {
-        setScore({...score, B:bScore})
+      const bScore = isCreeper? 0 : score["B"]+1
+      newScore["B"] = bScore
+      if (bScore < 4){
         setTeam("A")
       }
     }
     setTotalRevealed(totalRevealed + 1)
+    setScore(newScore)
+    checkGameOver(newScore)
   }
 
 
   useEffect(() => {
     const cells = initialiseCells(images);
+    console.log("Playing with board: ", cells)
     setCells(cells);
   }, []);
 
@@ -100,24 +117,30 @@ const Game = () => {
       <div className={style.house}>
 
         <div className={style.turnIndicator}>{team === "A" && "Your turn"}</div>
+        <span>{score["A"]}</span>
         <House score={score["A"]} />
       </div>
       <div className={style.board}>
         <div className={style.board}>
-          {cells &&
+          {isFinished? 
+          <GameOver score={score}/>
+          :  
+          cells &&
             cells.map((c: any) => (
               <GameCell
-                key={c.image}
-                image={c.image}
-                isCreeper={c.isCreeper}
-                currentTeam={team}
-                doTurn={doTurn}
+              key={c.image}
+              image={c.image}
+              isCreeper={c.isCreeper}
+              currentTeam={team}
+              doTurn={doTurn}
               />
-            ))}
+              ))
+            }
         </div>
       </div>
       <div className={style.house}>
         <div className={style.turnIndicator}>{team === "B" && "Your turn"}</div>
+        <span>{score["B"]}</span>
         <House score={score["B"]} />
       </div>
       <div className={style.teamABase}></div>

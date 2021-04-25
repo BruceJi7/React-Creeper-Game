@@ -15,6 +15,7 @@ function GameCell({ image, isCreeper, currentTeam, doTurn }: Props) {
   const [isRevealed, setRevealed] = useState<boolean>(false);
 
   function handleClick(isCreeper: boolean, isRevealed: boolean) {
+    console.log("Click: isCreeper = ", isCreeper)
     if (!isRevealed) {
       setRevealed(true);
       doTurn(isCreeper, currentTeam);
@@ -22,6 +23,7 @@ function GameCell({ image, isCreeper, currentTeam, doTurn }: Props) {
   }
 
   if (isRevealed) {
+
     if (isCreeper) {
       return (
         <div
@@ -32,6 +34,7 @@ function GameCell({ image, isCreeper, currentTeam, doTurn }: Props) {
         </div>
       );
     } else {
+
       return (
         <div
           className={style.card}
@@ -41,6 +44,7 @@ function GameCell({ image, isCreeper, currentTeam, doTurn }: Props) {
         </div>
       );
     }
+
   } else {
     return (
       <div
