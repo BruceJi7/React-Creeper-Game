@@ -2,24 +2,17 @@
 import { Link } from "react-router-dom";
 
 import style from "./Welcome.module.css";
+import common from "../../style/css/common.module.css";
 
 const Welcome = () => {
   return (
-    <div className={style.layout}>
-
-     
-      
-      
-      <div className={style.header}></div>
-      <div className={style.teamAHouse}></div>
-      <div className={style.board}>
+    <div className={common.layout}>
+      <div className={common.teamAHouse}>&nbsp;</div>
+      <div className={common.board}>
            <div className={style.welcome}>Welcome to Creeper Game!</div>
             <Link to="/game" className={style.link}>Begin</Link>
       </div>
-      <div className={style.teamBHouse}></div>
-      <div className={style.teamABase}></div>
-      <div className={style.stats}></div>
-      <div className={style.teamBBase}></div>
+      <div className={common.teamBHouse}></div>
     </div>
   );
 };

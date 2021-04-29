@@ -14,22 +14,20 @@ body {
     font-family: "minecrafty";
     color: white;
 
-    --boardsize:512px;
+    --boardsize:800px;
     --cellsize:calc(var(--boardsize)/4);
+
+    --mcsky:#b7b6f0;
 }
 
 .App {
     display:flex;
     justify-content: center;
     align-items: center;
-    
-    background-image: url("../images/background.png");
-    background-size: 1024px, 768px;
-    width:1024px;
-    height:768px;
+    width:100%;
+    height:100%;
+}
 
-
-
-
-
+.board {
+    background-image: url("../images/bigboard.png");
 }
