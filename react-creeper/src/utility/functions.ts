@@ -4,3 +4,7 @@ export const shuffleArray = (array:Array<any>) => {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
+export const multiclass = (...args: Array<string>) => {
+    return args.join(" ")
+  }
