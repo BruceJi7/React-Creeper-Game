@@ -4,7 +4,6 @@ import useSound from "use-sound";
 
 import GameOver from "./GameOver";
 import TurnIndicator from "./TurnIndicator";
-import StatsBlock from "./StatsBlock";
 import GameCell from "./GameCell";
 import House from "./House";
 
@@ -25,7 +24,7 @@ type ScoreType = {
 const Game = () => {
   const [cells, setCells] = useState<Array<object> | null>(null);
   const [totalRevealed, setTotalRevealed] = useState<number>(0);
-  const [previousCell, setPreviousCell] = useState<string | null>(null);
+  // const [previousCell, setPreviousCell] = useState<string | null>(null);
   const [isFinished, setFinished] = useState(false);
   const [team, setTeam] = useState<string>(initialiseTeams()[0]);
 
@@ -59,7 +58,7 @@ const Game = () => {
   }
 
   function reportCreeper(cellType: string) {
-    setPreviousCell(cellType);
+    // setPreviousCell(cellType);
     if (cellType === "creeper") {
       creepersFoundRef.current++;
     }
