@@ -8,12 +8,14 @@ import StatsBlock from "./StatsBlock";
 import GameCell from "./GameCell";
 import House from "./House";
 
-import { shuffleArray } from "../../utility/functions";
+import { multiclass, shuffleArray } from "../../utility/functions";
 
 import { safeSound, creeperSound, winSound } from "../../snd";
 import images from "../../defaultImages";
 
 import style from "./Game.module.css";
+import common from "../../style/css/common.module.css";
+import HouseBase from "./HouseBase";
 
 type ScoreType = {
   A: number;
@@ -121,18 +123,18 @@ const Game = () => {
   }, []);
 
   return (
-    <div className={style.layout}>
-      <div className={style.header}></div>
-      <div className={style.house}>
+    <div className={common.layout}>
+      <div className={multiclass(common.teamHouse, common.teamA)}>
         <TurnIndicator isPlayerTurn={team === "A"} />
         <House score={score["A"]} />
+        <HouseBase creepersFound={0} />
       </div>
       {isFinished ? (
         <div>
           <GameOver score={score} />
         </div>
       ) : (
-        <div className={style.board}>
+        <div className={multiclass(common.board, style.board)}>
           {cells &&
             cells.map((c: any) => {
               return (
@@ -147,20 +149,11 @@ const Game = () => {
             })}
         </div>
       )}
-
-      <div className={style.house}>
+      <div className={multiclass(common.teamHouse, common.teamB)}>
         <TurnIndicator isPlayerTurn={team === "B"} />
         <House score={score["B"]} />
+        <HouseBase creepersFound={0} />
       </div>
-      <div className={style.teamABase}></div>
-
-      <StatsBlock
-        totalRevealed={totalRevealed}
-        creepersFound={creepersFoundRef.current}
-        previousCell={previousCell}
-      />
-
-      <div className={style.teamBBase}></div>
     </div>
   );
 };
