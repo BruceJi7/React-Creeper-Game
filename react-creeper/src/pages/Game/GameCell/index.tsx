@@ -22,39 +22,30 @@ function GameCell({ image, isCreeper, currentTeam, doTurn }: Props) {
     }
   }
 
+  let imgSrc;
   if (isRevealed) {
-
     if (isCreeper) {
-      return (
-        <div
-          className={style.card}
-          onClick={() => handleClick(isCreeper, isRevealed)}
-        >
-          <img src={creeperImg} alt="Bomb" />
-        </div>
-      );
+      imgSrc = creeperImg;
     } else {
-
-      return (
-        <div
-          className={style.card}
-          onClick={() => handleClick(isCreeper, isRevealed)}
-        >
-          <img src={cobbleImg} alt="Safe" />
-        </div>
-      );
+      imgSrc = cobbleImg;
     }
-
   } else {
-    return (
-      <div
-        className={style.card}
-        onClick={() => handleClick(isCreeper, isRevealed)}
-      >
-        <img src={image} alt="Unknown" />
-      </div>
-    );
+    imgSrc = image;
   }
+
+  return (
+    <div
+      className={style.card}
+      onClick={() => handleClick(isCreeper, isRevealed)}
+    >
+      <div
+        className={style.image}
+        style={{ backgroundImage: `url(${imgSrc})` }}
+      >
+        &nbsp;
+      </div>
+    </div>
+  );
 }
 
 export default GameCell;

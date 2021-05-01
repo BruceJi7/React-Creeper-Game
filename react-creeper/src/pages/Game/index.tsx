@@ -130,7 +130,7 @@ const Game = () => {
         <HouseBase creepersFound={0} />
       </div>
       {isFinished ? (
-        <div>
+        <div className={common.board}>
           <GameOver score={score} />
         </div>
       ) : (

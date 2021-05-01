@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-import A from "../../../style/images/winner/winTileA.png"
+import A from "../../../style/images/winner/winA.png"
 
-import B from "../../../style/images/winner/winTileB.png"
+import B from "../../../style/images/winner/winB.png"
 
-import All from "../../../style/images/winner/winTileAll.png"
+import All from "../../../style/images/winner/winAll.png"
 
 import style from "./GameOver.module.css";
 
@@ -27,9 +27,7 @@ function GameOver({ score }: ScoreType) {
   } else {
     image = All
   }
-
-console.log(image)
-  return <div className={style.gameOver} style={{background: `url(${image})`}}>
+  return <div className={style.gameOver} style={{backgroundImage: `url(${image})`}}>
     <Link to="/" className={style.link}>
         Play Again?
     </Link>
