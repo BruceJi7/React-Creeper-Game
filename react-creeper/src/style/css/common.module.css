@@ -45,3 +45,14 @@
   width: calc(100vh / 2);
   aspect-ratio: 2 / 1;
 }
+
+
+.link {
+  font-size: 24pt;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+.link:hover {
+  color:#ddd;
+}
