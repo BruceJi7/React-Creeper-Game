@@ -37,7 +37,7 @@ const Game = () => {
   const [playWinSnd] = useSound(winSound);
 
   function initialiseCells(imgArray: Array<string>) {
-    const sessionImg = imgArray.slice(0, 16);
+    const sessionImg = imgArray.length > 16? imgArray.slice(0, 16) : imgArray;
     shuffleArray(sessionImg);
     let cells = sessionImg.map((l) => {
       return { image: l, isCreeper: false };

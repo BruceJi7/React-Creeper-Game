@@ -46,6 +46,33 @@ function About() {
             wins.
           </p>
           <p>
+            <div className={style.heading}>About the default flashcards</div>
+            The default set of flashcards are letters a-p (16 letters).
+            <br />
+            If you use these letters, you can assign questions or tasks to each
+            letter, or you might have some physical items students have to name.
+          </p>
+          <p>
+            Tasks might include reading something - read and then a student
+            can choose a letter to reveal. Or you might make a list of 16
+            actions or short conversations, and a student might choose a letter
+            and have to perform whatever it is you chose.
+          </p>
+          <p>
+            <div className={style.heading}>Can I change the flashcards?</div>
+            You certainly can, and this is what the settings option allows you
+            to do. Find the images online, and copy the image URLs, and paste
+            them into the box. You'll need at least 16 images! Tips for choosing
+            the flashcards are:
+            <ul>
+              <li>Make sure the image recogniseable when it's small</li>
+              <li>Try to use an image that is at most 400 x 400px</li>
+              <li>Try to use JPG or PNG images</li>
+            </ul>
+            If you want to use images from your own computer, upload them to an
+            image hosting site and copy the URLs and paste them in.
+          </p>
+          <p>
             <div className={style.heading}>Minecraft themed?</div>
             Minecraft is super popular even despite the age. <br /> It's quite
             easy to get kids excited about practicing English or whatever by
@@ -66,10 +93,12 @@ function About() {
           <p>
             I used to be an English teacher in an after-school academy. Kids
             weren't super motivated since they were tired and English is
-            something the kids' parents wanted them to do lol.<br/>
+            something the kids' parents wanted them to do lol.
+            <br />
             So, I figured I would trick the kids into learning/practicing their
             English by making games for them to play in class. It went pretty
-            well.<br/>
+            well.
+            <br />
             It turns out programming suits me better, hence the career change!
           </p>
           <Link to="/" className={common.link}>
