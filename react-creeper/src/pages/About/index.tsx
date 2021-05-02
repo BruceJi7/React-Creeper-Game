@@ -53,10 +53,10 @@ function About() {
             letter, or you might have some physical items students have to name.
           </p>
           <p>
-            Tasks might include reading something - read and then a student
-            can choose a letter to reveal. Or you might make a list of 16
-            actions or short conversations, and a student might choose a letter
-            and have to perform whatever it is you chose.
+            Tasks might include reading something - read and then a student can
+            choose a letter to reveal. Or you might make a list of 16 actions or
+            short conversations, and a student might choose a letter and have to
+            perform whatever it is you chose.
           </p>
           <p>
             <div className={style.heading}>Can I change the flashcards?</div>
@@ -71,6 +71,9 @@ function About() {
             </ul>
             If you want to use images from your own computer, upload them to an
             image hosting site and copy the URLs and paste them in.
+            <br />
+            At some point I will add the ability to sign in and store image URLs
+            so you can easily come back to previous sets.
           </p>
           <p>
             <div className={style.heading}>Minecraft themed?</div>
