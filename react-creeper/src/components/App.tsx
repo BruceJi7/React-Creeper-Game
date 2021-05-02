@@ -1,8 +1,9 @@
 import { Switch, Route } from "react-router-dom";
 
-import Welcome from "../pages/Welcome/Welcome";
-import Game from "../pages/Game";
 import About from "../pages/About";
+import Game from "../pages/Game";
+import Settings from "../pages/Settings/Settings";
+import Welcome from "../pages/Welcome/Welcome";
 
 import "../style/css/global.css";
 
@@ -18,6 +19,9 @@ const App = () => {
         </Route>
         <Route path="/about">
           <About />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
       </Switch>
     </div>
