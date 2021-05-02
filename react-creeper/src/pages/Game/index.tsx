@@ -24,11 +24,11 @@ type ScoreType = {
 const Game = () => {
   const [cells, setCells] = useState<Array<object> | null>(null);
   const [totalRevealed, setTotalRevealed] = useState<number>(0);
-  // const [previousCell, setPreviousCell] = useState<string | null>(null);
   const [isFinished, setFinished] = useState(false);
   const [team, setTeam] = useState<string>(initialiseTeams()[0]);
 
   const [score, setScore] = useState<ScoreType>({ A: 0, B: 0 });
+  const [teamCreepers, setTeamCreepers] = useState<ScoreType>({A:0, B:0})
 
   const creepersFoundRef = useRef(0);
 
@@ -58,9 +58,7 @@ const Game = () => {
   }
 
   function reportCreeper(cellType: string) {
-    // setPreviousCell(cellType);
     if (cellType === "creeper") {
-      creepersFoundRef.current++;
     }
   }
 
@@ -91,15 +89,26 @@ const Game = () => {
     reportCreeper(isCreeper ? "creeper" : "safe");
 
     const newScore = { ...score };
+    const creepers = {...teamCreepers}
 
     if (currentTeam === "A") {
       const aScore = isCreeper ? 0 : score["A"] + 1;
+
+      if (isCreeper){
+        creepers["A"] = creepers["A"] + 1;
+      }
+
       newScore["A"] = aScore;
       if (aScore < 4) {
         setTeam("B");
       }
     } else {
       const bScore = isCreeper ? 0 : score["B"] + 1;
+
+      if (isCreeper){
+        creepers["B"] = creepers["B"] + 1;
+      }
+
       newScore["B"] = bScore;
       if (bScore < 4) {
         setTeam("A");
@@ -112,6 +121,7 @@ const Game = () => {
     }
     setTotalRevealed(totalRevealed + 1);
     setScore(newScore);
+    setTeamCreepers(creepers)
     checkGameOver(newScore);
   }
 
@@ -126,7 +136,7 @@ const Game = () => {
       <div className={multiclass(common.teamHouse, common.teamA)}>
         <TurnIndicator isPlayerTurn={team === "A"} />
         <House score={score["A"]} />
-        <HouseBase creepersFound={0} />
+        <HouseBase creepersFound={teamCreepers["A"]} />
       </div>
       {isFinished ? (
         <div className={common.board}>
@@ -151,7 +161,7 @@ const Game = () => {
       <div className={multiclass(common.teamHouse, common.teamB)}>
         <TurnIndicator isPlayerTurn={team === "B"} />
         <House score={score["B"]} />
-        <HouseBase creepersFound={0} />
+        <HouseBase creepersFound={teamCreepers["B"]} />
       </div>
     </div>
   );
