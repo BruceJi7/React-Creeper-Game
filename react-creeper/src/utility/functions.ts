@@ -5,6 +5,12 @@ export const shuffleArray = (array:Array<any>) => {
     }
 }
 
+export const splitCleanly = (longString:string) => {
+    return longString.split("\n").filter((n:string) => {
+        return n.endsWith(".jpg") || n.endsWith(".png")
+    } )
+}
+
 export const multiclass = (...args: Array<string>) => {
     return args.join(" ")
   }
