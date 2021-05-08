@@ -36,6 +36,7 @@
   flex-direction: column;
   justify-content: flex-end;
   width: calc(100vh / 2);
+  position:relative;
 }
 .teamHouse .house {
   width: calc(100vh / 2);

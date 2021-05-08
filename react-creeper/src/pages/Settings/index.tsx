@@ -15,20 +15,24 @@ const Settings = () => {
   const [formText, setFormText] = useState<string>("");
   const [thumb, setThumb] = useState<string>("");
 
-  const { storeImages } = useLocalStorage("creeper-images");
+  const { storeImages, retrieveImages, clearImages } = useLocalStorage(
+    "creeper-images"
+  );
 
-
-  function doStoreImages(images:string){
-
-    const userImages = splitCleanly(formText)
+  function doStoreImages() {
+    const userImages = splitCleanly(formText);
 
     if (userImages.length >= 16) {
-      storeImages(userImages)
-      console.log("Stored list of images")
+      storeImages(userImages);
+      console.log("Stored list of images", userImages);
     } else {
-      console.log("Not enough images")
+      console.log("Not enough images");
     }
+  }
 
+  function doResetImages() {
+    setFormText("");
+    clearImages();
   }
 
   useEffect(() => {
@@ -37,6 +41,13 @@ const Settings = () => {
       setThumb(th);
     }
   }, [formText]);
+
+  useEffect(() => {
+    const previousImages = retrieveImages();
+    if (previousImages) {
+      setFormText(previousImages.join("\n"));
+    }
+  }, [retrieveImages]);
 
   return (
     <div className={common.layout}>
@@ -64,7 +75,22 @@ const Settings = () => {
           <div className={style.caption}>
             {formText ? splitCleanly(formText).length : "0"} image(s) detected.
           </div>
-          <button onClick={()=> {doStoreImages(formText)}}>Submit</button>
+          <div className={style.buttons}>
+            <button
+              onClick={() => {
+                doStoreImages();
+              }}
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => {
+                doResetImages();
+              }}
+            >
+              Reset
+            </button>
+          </div>
         </div>
         <div className={style.example}>
           <div>Last image example:</div>

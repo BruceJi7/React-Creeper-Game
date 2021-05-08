@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router-dom";
 
 import About from "../pages/About";
 import Game from "../pages/Game";
-import Settings from "../pages/Settings/Settings";
+import Settings from "../pages/Settings";
 import Welcome from "../pages/Welcome/Welcome";
 
 import "../style/css/global.css";

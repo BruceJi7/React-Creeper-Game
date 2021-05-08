@@ -10,10 +10,16 @@ function useLocalStorage(keyname: string) {
     const dat = window.localStorage.getItem(keyname);
     if (dat) {
       return JSON.parse(dat).userImages;
+    } else {
+      return null
     }
   };
 
-  return { storeImages, retrieveImages };
+  const clearImages = () =>{
+    window.localStorage.removeItem(keyname)
+  }
+
+  return { storeImages, retrieveImages, clearImages };
 }
 
 export default useLocalStorage;

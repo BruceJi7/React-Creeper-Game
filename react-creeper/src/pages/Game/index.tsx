@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 import useSound from "use-sound";
 
@@ -10,11 +10,12 @@ import House from "./House";
 import { multiclass, shuffleArray } from "../../utility/functions";
 
 import { safeSound, creeperSound, winSound } from "../../snd";
-import images from "../../defaultImages";
 
 import style from "./Game.module.css";
 import common from "../../style/css/common.module.css";
 import HouseBase from "./HouseBase";
+import useInitialise from "../../hooks/useInitialise";
+
 
 type ScoreType = {
   A: number;
@@ -22,7 +23,8 @@ type ScoreType = {
 };
 
 const Game = () => {
-  const [cells, setCells] = useState<Array<object> | null>(null);
+  const initialCells = useInitialise()
+  const [cells] = useState<Array<object> | null>(initialCells);
   const [totalRevealed, setTotalRevealed] = useState<number>(0);
   const [isFinished, setFinished] = useState(false);
   const [team, setTeam] = useState<string>(initialiseTeams()[0]);
@@ -36,20 +38,6 @@ const Game = () => {
   const [playCreeperSnd] = useSound(creeperSound);
   const [playWinSnd] = useSound(winSound);
 
-  function initialiseCells(imgArray: Array<string>) {
-    const sessionImg = imgArray.length > 16? imgArray.slice(0, 16) : imgArray;
-    shuffleArray(sessionImg);
-    let cells = sessionImg.map((l) => {
-      return { image: l, isCreeper: false };
-    });
-    const creepers = cells.slice(0, 4).map((c) => {
-      return { ...c, isCreeper: true };
-    });
-    const safe = cells.slice(4);
-    cells = creepers.concat(safe);
-    shuffleArray(cells);
-    return cells;
-  }
 
   function initialiseTeams() {
     const teams = ["A", "B"];
@@ -125,16 +113,10 @@ const Game = () => {
     checkGameOver(newScore);
   }
 
-  useEffect(() => {
-    const cells = initialiseCells(images);
-    console.log("Playing with board: ", cells);
-    setCells(cells);
-  }, []);
-
   return (
     <div className={common.layout}>
       <div className={multiclass(common.teamHouse, common.teamA)}>
-        <TurnIndicator isPlayerTurn={team === "A"} />
+        <TurnIndicator team="A" isPlayerTurn={team === "A"} />
         <House score={score["A"]} />
         <HouseBase creepersFound={teamCreepers["A"]} />
       </div>
@@ -159,7 +141,7 @@ const Game = () => {
         </div>
       )}
       <div className={multiclass(common.teamHouse, common.teamB)}>
-        <TurnIndicator isPlayerTurn={team === "B"} />
+        <TurnIndicator team="B" isPlayerTurn={team === "B"} />
         <House score={score["B"]} />
         <HouseBase creepersFound={teamCreepers["B"]} />
       </div>

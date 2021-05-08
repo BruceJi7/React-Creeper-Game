@@ -9,9 +9,27 @@
     text-align: center;
 }
 .form {
+    align-items: center;
+    display:flex;
+    flex-direction: column;
     height:30vh;
     margin-top:20px;
     width:60vh;
+}
+
+.buttons{
+    width: 100%;
+    display:flex;
+    justify-content: space-around;
+    margin:10px;
+}
+
+button {
+    background-color: #aaa ;
+    color:white;
+    font-family: "minecrafty";
+    font-size:12pt;
+    padding:5px 25px;
 }
 
 .form textarea {
