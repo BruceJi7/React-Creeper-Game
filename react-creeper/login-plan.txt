@@ -1,0 +1,17 @@
+On the new settings page:
+
+Have a log in/sign up button if the user is not logged in.
+Log out button if they are.
+
+If the user is logged in, provide a menu.
+One option there is to add a bunch of images to the game. 
+I need an input area to choose the set's name.
+I could let the user load an existing set so they can edit it.
+Adding images -
+Recycle the old textarea for this?
+Or I could have input boxes - and an option to keep adding more - 
+    and then by the side of these, a mini cell showing how that image could look/if it worked.
+Also a delete tool - delete individual images or sets.
+
+Submit button.
+

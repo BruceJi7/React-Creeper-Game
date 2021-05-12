@@ -76,6 +76,16 @@ function About() {
             so you can easily come back to previous sets.
           </p>
           <p>
+            <div className={style.heading}>
+              I added 16+ images but some showed up blank!
+            </div>
+            So all the game does is load images sourced from other sites. Some
+            sites don't like people being able to embed their images in other
+            sites, so they block them. This happened when I was testing this
+            game, and I believe it's that. It doesn't seem to happen a lot. Try
+            a different, similar image!
+          </p>
+          <p>
             <div className={style.heading}>Minecraft themed?</div>
             Minecraft is super popular even despite the age. <br /> It's quite
             easy to get kids excited about practicing English or whatever by
