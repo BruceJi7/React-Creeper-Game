@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/fireinstance";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import House from "../Game/House";
 import HouseBase from "../Game/HouseBase";
+import { SignIn, SignOut } from "./SignInOut";
+
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 import { multiclass, splitCleanly } from "../../utility/functions";
 
 import style from "./Settings.module.css";
 import common from "../../style/css/common.module.css";
-import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Settings = () => {
+  const [user] = useAuthState(auth);
+
   const [formText, setFormText] = useState<string>("");
   const [thumb, setThumb] = useState<string>("");
 
-  const { storeImages, retrieveImages, clearImages } = useLocalStorage(
-    "creeper-images"
-  );
+  const { storeImages, retrieveImages, clearImages } =
+    useLocalStorage("creeper-images");
 
   function doStoreImages() {
     const userImages = splitCleanly(formText);
@@ -63,45 +68,9 @@ const Settings = () => {
         <Link to="/about" className={common.link}>
           Help
         </Link>
-        <div className={style.form}>
-          <div className={style.caption}>
-            Add at least 16 .jpg or .png image urls.
-          </div>
-          <textarea
-            value={formText}
-            onChange={(e) => setFormText(e.target.value)}
-            rows={6}
-          />
-          <div className={style.caption}>
-            {formText ? splitCleanly(formText).length : "0"} image(s) detected.
-          </div>
-          <div className={style.buttons}>
-            <button
-              onClick={() => {
-                doStoreImages();
-              }}
-            >
-              Submit
-            </button>
-            <button
-              onClick={() => {
-                doResetImages();
-              }}
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-        <div className={style.example}>
-          <div>Last image example:</div>
-          {thumb && (
-            <div className={style.card}>
-              <div
-                className={style.image}
-                style={{ backgroundImage: `url("${thumb}")` }}
-              ></div>
-            </div>
-          )}
+
+        <div className={style.userSection}>
+          {user ? <SignOut /> : <SignIn />}
         </div>
       </div>
       <div className={multiclass(common.teamHouse, common.teamB)}>

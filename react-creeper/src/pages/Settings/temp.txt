@@ -1,0 +1,44 @@
+{
+  /* <div className={style.form}>
+<div className={style.caption}>
+  Add at least 16 .jpg or .png image urls.
+</div>
+<textarea
+  value={formText}
+  onChange={(e) => setFormText(e.target.value)}
+  rows={6}
+/>
+<div className={style.caption}>
+  {formText ? splitCleanly(formText).length : "0"} image(s) detected.
+</div>
+<div className={style.buttons}>
+  <button
+    onClick={() => {
+      doStoreImages();
+    }}
+  >
+    Submit
+  </button>
+  <button
+    onClick={() => {
+      doResetImages();
+    }}
+  >
+    Reset
+  </button>
+</div>
+</div>
+<div className={style.example}>
+<div>Last image example:</div>
+{thumb && (
+  <div className={style.card}>
+    <div
+      className={style.image}
+      style={{ backgroundImage: `url("${thumb}")` }}
+    ></div>
+  </div>
+)}
+</div> */
+}
+
+export {};

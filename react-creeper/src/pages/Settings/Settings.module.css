@@ -1,71 +1,73 @@
-
 .welcome {
-    height:56px;
-    width:100%;
-    z-index:2;
-    font-size: 40pt;
-    color: white;
-    text-decoration: none;
-    text-align: center;
+  height: 56px;
+  width: 100%;
+  z-index: 2;
+  font-size: 40pt;
+  color: white;
+  text-decoration: none;
+  text-align: center;
 }
 .form {
-    align-items: center;
-    display:flex;
-    flex-direction: column;
-    height:30vh;
-    margin-top:20px;
-    width:60vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  margin-top: 20px;
+  width: 60vh;
 }
 
-.buttons{
-    width: 100%;
-    display:flex;
-    justify-content: space-around;
-    margin:10px;
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
 }
 
 button {
-    background-color: #aaa ;
-    color:white;
-    font-family: "minecrafty";
-    font-size:12pt;
-    padding:5px 25px;
+  background-color: #aaa;
+  color: white;
+  font-family: "minecrafty";
+  font-size: 12pt;
+  padding: 5px 25px;
 }
 
 .form textarea {
-    margin: 10px 0;
-    resize:none;
-    width:100%;
+  margin: 10px 0;
+  resize: none;
+  width: 100%;
 }
 .form .caption {
-    text-align: center;
+  text-align: center;
 }
 
 .example {
-    align-items: center;
-    display:flex;
-    flex-direction: column;
-    height:30vh;
-    justify-content: center;
-    width:40vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  justify-content: center;
+  width: 40vh;
 }
 
 .card {
-    align-items: center;
-    box-sizing: border-box;
-    display:flex;
-    height:25vh;
-    justify-content: center;
-    margin:0;
-    padding: 0;
-    width:25vh;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 25vh;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 25vh;
 }
 
 .card .image {
-    width:95%;
-    height:95%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+  width: 95%;
+  height: 95%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
 
+.userSection {
+  height: 70%;
 }
