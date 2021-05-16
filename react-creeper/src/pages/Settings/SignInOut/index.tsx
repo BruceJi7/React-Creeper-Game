@@ -28,6 +28,10 @@ export const SignIn = () => {
 
 export const SignOut = () => {
   return (
-    auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>
+    auth.currentUser && (
+      <div className={style.signInOut}>
+        <button onClick={() => auth.signOut()}>Sign Out</button>
+      </div>
+    )
   );
 };

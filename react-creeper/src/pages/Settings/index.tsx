@@ -6,7 +6,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import House from "../Game/House";
 import HouseBase from "../Game/HouseBase";
-import { SignIn, SignOut } from "./SignInOut";
+import ImageEntry from "./ImageEntry";
+import { SignIn } from "./SignInOut";
 
 import useLocalStorage from "../../hooks/useLocalStorage";
 
@@ -70,7 +71,7 @@ const Settings = () => {
         </Link>
 
         <div className={style.userSection}>
-          {user ? <SignOut /> : <SignIn />}
+          {user ? <ImageEntry /> : <SignIn />}
         </div>
       </div>
       <div className={multiclass(common.teamHouse, common.teamB)}>
