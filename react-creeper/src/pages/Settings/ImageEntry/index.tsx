@@ -19,6 +19,7 @@ function ImageEntry() {
   const { getAllSets } = useGetSets(userID);
 
   const [userSets, setUserSets] = useState<any>(null);
+  const [selectedSet, setSelected] = useState<any>("Create New Set");
 
   useEffect(() => {
     if (userID) {
@@ -31,17 +32,33 @@ function ImageEntry() {
 
   return (
     <div className={style.imageEntry}>
-      <div className={style.setsBox}>
-        {userSets &&
-          userSets.map((set: any) => {
-            return (
-              <SetDisplay
-                key={set.setName}
-                title={set.setName}
-                cards={set.images}
-              />
+      <select
+        value={selectedSet}
+        onChange={(e) => {
+          if (e.target.value === "Create New Set") {
+            setSelected("Create New Set");
+          } else {
+            setSelected(
+              userSets.filter((set: any) => set.setName === e.target.value)[0]
             );
-          })}
+          }
+        }}
+      >
+        {userSets &&
+          userSets.map((set: any) => (
+            <option key={set.setName}>{set.setName}</option>
+          ))}
+        <option>Create New Set</option>
+      </select>
+
+      <div className={style.setsBox}>
+        {selectedSet !== "Create New Set" && (
+          <SetDisplay
+            key={selectedSet.setName}
+            title={selectedSet.setName}
+            cards={selectedSet.images}
+          />
+        )}
       </div>
       <SignOut />
     </div>
