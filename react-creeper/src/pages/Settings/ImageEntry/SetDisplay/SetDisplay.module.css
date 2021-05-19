@@ -1,0 +1,36 @@
+.SetDisplay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.title {
+  align-self: center;
+}
+
+.cardBox {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.card {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 25vh;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 25vh;
+}
+
+.card .image {
+  width: 20vh;
+  height: 20vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: 5px;
+}

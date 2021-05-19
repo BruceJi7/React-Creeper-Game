@@ -1,39 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import firebase from "firebase/app";
+import { auth, firestore } from "../../../firebase/fireinstance";
+
 import { SignOut } from "../SignInOut";
-import CreateEditSet from "./CreateEditSet";
+import SetDisplay from "./SetDisplay";
+
+import useGetSets from "../../../hooks/useGetSets";
+
+import { splitCleanly } from "../../../utility/functions";
 
 import style from "./ImageEntry.module.css";
 
-type modeType = "choose" | "add";
-// where choose = choosing image sets,
-// add = adding new image sets,
-// edit = editing existing image sets
-
 function ImageEntry() {
-  const [mode, setMode] = useState<modeType>("add");
+  const [user] = useAuthState(auth);
+  const userID = user?.uid;
+  const { getAllSets } = useGetSets(userID);
 
-  let internal;
+  const [userSets, setUserSets] = useState<any>(null);
 
-  switch (mode) {
-    case "add":
-      internal = <CreateEditSet mode="add" />;
-      break;
-    default:
-      internal = <CreateEditSet mode="add" />;
-  }
+  useEffect(() => {
+    if (userID) {
+      getAllSets().then((res: any) => {
+        console.log(res);
+        setUserSets(res);
+      });
+    }
+  }, [userID]);
 
   return (
     <div className={style.imageEntry}>
-      <SignOut />
-      <div className={style.buttons}>
-        <button>Create New Set</button>
-        <button>Edit Existing Set</button>
-        <button>Select A Set</button>
+      <div className={style.setsBox}>
+        {userSets &&
+          userSets.map((set: any) => {
+            return (
+              <SetDisplay
+                key={set.setName}
+                title={set.setName}
+                cards={set.images}
+              />
+            );
+          })}
       </div>
-      {internal}
-      {/* See existing sets here, and choose one */}
-      {/* Be able to edit an existing set */}
-      {/* Be able to create a set */}
+      <SignOut />
     </div>
   );
 }
