@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import firebase from "firebase/app";
-import { auth, firestore } from "../../../firebase/fireinstance";
+import { auth } from "../../../firebase/fireinstance";
 
 import { SignOut } from "../SignInOut";
 import SetDisplay from "./SetDisplay";
 
 import useGetSets from "../../../hooks/useGetSets";
-
-import { splitCleanly } from "../../../utility/functions";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 import style from "./ImageEntry.module.css";
 
 function ImageEntry() {
   const [user] = useAuthState(auth);
   const userID = user?.uid;
+
   const { getAllSets } = useGetSets(userID);
+  const { storeImages, clearImages } = useLocalStorage("creeper-game-images");
 
   const [userSets, setUserSets] = useState<any>(null);
   const [selectedSet, setSelected] = useState<any>("Create New Set");
+  const [gameSetLoaded, setGameSetLoaded] = useState(false);
 
   useEffect(() => {
     if (userID) {
@@ -28,7 +29,10 @@ function ImageEntry() {
         setUserSets(res);
       });
     }
-  }, [userID]);
+  }, [userID]); //eslint-disable-line
+  // Clearned this warning with disable. Warning requires adding getAllSets
+  // to useEffect dependency but that causes an infinite loop.
+  // A better solution is..? useCallback?
 
   return (
     <div className={style.imageEntry}>
@@ -42,6 +46,8 @@ function ImageEntry() {
               userSets.filter((set: any) => set.setName === e.target.value)[0]
             );
           }
+          setGameSetLoaded(false);
+          clearImages();
         }}
       >
         {userSets &&
@@ -58,6 +64,20 @@ function ImageEntry() {
             title={selectedSet.setName}
             cards={selectedSet.images}
           />
+        )}
+      </div>
+      <div className={style.buttons}>
+        {selectedSet !== "Create New Set" && (
+          <button
+            onClick={() => {
+              if (!gameSetLoaded) {
+                storeImages(selectedSet.images);
+                setGameSetLoaded(true);
+              }
+            }}
+          >
+            {gameSetLoaded ? "Set Loaded" : "Use This Set"}
+          </button>
         )}
       </div>
       <SignOut />
