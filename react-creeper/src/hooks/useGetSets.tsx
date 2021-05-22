@@ -1,25 +1,37 @@
-import { useState, useEffect } from "react";
-import { firestore } from "../firebase/fireinstance";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { firestore, auth } from "../firebase/fireinstance";
+import firebase from "firebase";
 
-function useGetSets(uid: string | undefined) {
-  const [sets, setSets] = useState<any>(null);
+const game_images = "game-images";
 
-  const getAllSets = async () => {
-    if (uid) {
-      const snapshot = await firestore.collection(uid).get();
-      return snapshot.docs.map((doc) => doc.data());
-    } else {
-      return null;
+function useGetSets() {
+  const [user] = useAuthState(auth);
+
+  const editSet = async (setTitle: string, cards: string[]) => {
+    if (user) {
+      const ref = await firestore.collection(game_images);
+      const setDoc = await (
+        await ref.where("setName", "==", setTitle).get()
+      ).docs[0].ref;
+      setDoc.update({ images: cards });
+      console.log("Hook used to update");
+    }
+    return null;
+  };
+
+  const createSet = async (setName: string) => {
+    const ref = await firestore.collection(game_images);
+    if (user) {
+      await ref.add({
+        setName: setName,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        images: [],
+        user: user.uid,
+      });
     }
   };
 
-  useEffect(() => {
-    if (uid) {
-      getAllSets().then((sets) => setSets(sets));
-    }
-  });
-
-  return { sets, getAllSets };
+  return { editSet, createSet };
 }
 
 export default useGetSets;

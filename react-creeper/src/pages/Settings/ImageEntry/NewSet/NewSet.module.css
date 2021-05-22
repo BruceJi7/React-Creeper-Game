@@ -1,0 +1,17 @@
+.newSet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px;
+  width: 100%;
+}
+
+input {
+  width: 200px;
+}
+
+.no {
+  border: 2px solid red;
+  background-color: lightpink;
+}

@@ -33,4 +33,23 @@
   background-position: center;
   background-size: contain;
   margin: 5px;
+  position: relative;
+}
+.delete {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  height: 17px;
+  width: 17px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  cursor: pointer;
+}
+
+.newCardEntry {
+  margin: 10px;
 }
