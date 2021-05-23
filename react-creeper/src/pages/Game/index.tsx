@@ -16,28 +16,26 @@ import common from "../../style/css/common.module.css";
 import HouseBase from "./HouseBase";
 import useInitialise from "../../hooks/useInitialise";
 
-
 type ScoreType = {
   A: number;
   B: number;
 };
 
 const Game = () => {
-  const initialCells = useInitialise()
+  const initialCells = useInitialise();
   const [cells] = useState<Array<object> | null>(initialCells);
   const [totalRevealed, setTotalRevealed] = useState<number>(0);
   const [isFinished, setFinished] = useState(false);
   const [team, setTeam] = useState<string>(initialiseTeams()[0]);
 
   const [score, setScore] = useState<ScoreType>({ A: 0, B: 0 });
-  const [teamCreepers, setTeamCreepers] = useState<ScoreType>({A:0, B:0})
+  const [teamCreepers, setTeamCreepers] = useState<ScoreType>({ A: 0, B: 0 });
 
   const creepersFoundRef = useRef(0);
 
   const [playSafeSnd] = useSound(safeSound);
   const [playCreeperSnd] = useSound(creeperSound);
   const [playWinSnd] = useSound(winSound);
-
 
   function initialiseTeams() {
     const teams = ["A", "B"];
@@ -51,23 +49,16 @@ const Game = () => {
   }
 
   function checkGameOver(score: ScoreType) {
-    console.log("Creepers found: ", creepersFoundRef.current);
-    console.log("Total revealed: ", totalRevealed);
-    console.log("Current scores: ", score);
     if (creepersFoundRef.current >= 4) {
-      console.log("Win condition: All creepers found");
       setFinished(true);
       playWinSnd();
     } else if (totalRevealed >= 16) {
-      console.log("Win condition: All tiles revealed");
       setFinished(true);
       playWinSnd();
     } else if (score["A"] >= 4) {
-      console.log("Win condition: Team A's score");
       setFinished(true);
       playWinSnd();
     } else if (score["B"] >= 4) {
-      console.log("Win condition: Team B's score");
       setFinished(true);
       playWinSnd();
     }
@@ -77,12 +68,12 @@ const Game = () => {
     reportCreeper(isCreeper ? "creeper" : "safe");
 
     const newScore = { ...score };
-    const creepers = {...teamCreepers}
+    const creepers = { ...teamCreepers };
 
     if (currentTeam === "A") {
       const aScore = isCreeper ? 0 : score["A"] + 1;
 
-      if (isCreeper){
+      if (isCreeper) {
         creepers["A"] = creepers["A"] + 1;
       }
 
@@ -93,7 +84,7 @@ const Game = () => {
     } else {
       const bScore = isCreeper ? 0 : score["B"] + 1;
 
-      if (isCreeper){
+      if (isCreeper) {
         creepers["B"] = creepers["B"] + 1;
       }
 
@@ -109,7 +100,7 @@ const Game = () => {
     }
     setTotalRevealed(totalRevealed + 1);
     setScore(newScore);
-    setTeamCreepers(creepers)
+    setTeamCreepers(creepers);
     checkGameOver(newScore);
   }
 
