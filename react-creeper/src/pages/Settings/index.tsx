@@ -30,9 +30,15 @@ const Settings = () => {
           Help
         </Link>
 
-        <div className={style.userSection}>
-          {user ? <ImageEntry /> : <SignIn />}
-        </div>
+        {user ? (
+          <div className={style.userSection}>
+            <ImageEntry />
+          </div>
+        ) : (
+          <div className={style.signInSection}>
+            <SignIn />
+          </div>
+        )}
       </div>
       <div className={multiclass(common.teamHouse, common.teamB)}>
         <House score={4} />

@@ -61,19 +61,36 @@ function About() {
           <p>
             <div className={style.heading}>Can I change the flashcards?</div>
             You certainly can, and this is what the settings option allows you
-            to do. Find the images online, and copy the image URLs, and paste
-            them into the box. You'll need at least 16 images! Tips for choosing
-            the flashcards are:
+            to do. Log in to the Creeper Game app, and you'll be able to save
+            sets of images and re-use them.
+            <br />
+            Find the images online, and copy the image URLs, and paste them into
+            the box. You'll need at least 16 images! Tips for choosing the
+            flashcards are:
             <ul>
               <li>Make sure the image recogniseable when it's small</li>
               <li>Try to use an image that is at most 400 x 400px</li>
-              <li>Try to use JPG or PNG images</li>
+              <li>Use JPG, GIF or PNG images</li>
             </ul>
             If you want to use images from your own computer, upload them to an
             image hosting site and copy the URLs and paste them in.
             <br />
-            At some point I will add the ability to sign in and store image URLs
-            so you can easily come back to previous sets.
+          </p>
+          <p>
+            <div className={style.heading}>
+              I pasted in an image but it didn't load. The URL is weird.
+            </div>
+            It only accepts urls that end in .jpg, .png, or .gif.
+            <br />
+            If you paste in an image and it doesn't immediately load the image
+            and clear the entry box, you need to pick a different image! Sorry!
+            <br />
+            <br />
+            More detail: Sometimes when you copy an image from Google Images,
+            you get something beginning with data:image.
+            <br />
+            That's actually the image, re-encoded as text! But the game doesn't
+            handle that type of url, unfortunately.
           </p>
           <p>
             <div className={style.heading}>
@@ -81,9 +98,34 @@ function About() {
             </div>
             So all the game does is load images sourced from other sites. Some
             sites don't like people being able to embed their images in other
-            sites, so they block them. This happened when I was testing this
-            game, and I believe it's that. It doesn't seem to happen a lot. Try
-            a different, similar image!
+            sites, so they block them. It also struggles if you paste in huge
+            image - all it's doing is scaling the image down. When you're adding
+            the images the set preview will give you an example of how the image
+            looks. If it looks no good, try a different, similar image!
+          </p>
+          <p>
+            <div className={style.heading}>
+              I want to paste in the same image multiple times
+            </div>
+            Er, you can do that I guess, but it will make the game awkward to
+            play. Also if you try to delete those images it will delete all of
+            them. Not a good idea!
+          </p>
+          <p>
+            <div className={style.heading}>
+              I found a bug! Something is broken! I want to ask for a feature!
+            </div>
+            <a
+              href="https://github.com/BruceJi7/React-Creeper-Game/issues"
+              target="_blank"
+              rel="noreferrer"
+            >
+              The game code is here.
+            </a>
+            <br />
+            If you find an issue, go ahead and register it there. Let me know
+            exactly what you were doing when it happened! You can request
+            features there too.
           </p>
           <p>
             <div className={style.heading}>Minecraft themed?</div>
@@ -103,6 +145,7 @@ function About() {
             I'm Toby. I'm a front-end web developer for a blockchain company. I
             live in South Korea.
           </p>
+
           <p>
             I used to be an English teacher in an after-school academy. Kids
             weren't super motivated since they were tired and English is
@@ -113,6 +156,13 @@ function About() {
             well.
             <br />
             It turns out programming suits me better, hence the career change!
+          </p>
+          <p>
+            <div className={style.heading}>
+              One horse-sized duck, or 100 duck-sized horses?
+            </div>
+            Do you get preparation/guns? The giant duck. Else, the swarm of
+            horses!
           </p>
           <Link to="/" className={common.link}>
             Back

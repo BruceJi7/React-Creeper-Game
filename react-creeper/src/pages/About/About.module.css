@@ -1,27 +1,33 @@
 .about {
-    box-sizing: border-box;
-    display:flex;
-    height:100vh;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: auto;
-    padding-top:20px;
-    padding-bottom:20px;
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .about > .heading {
-    font-size: 48pt;
-    text-align: center;
-    margin-top: 10px;
+  font-size: 48pt;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .about p {
-    padding:10px;
-    font-size: 18pt;
+  padding: 10px;
+  font-size: 18pt;
+}
+
+.about a {
+  color: aqua;
+}
+.about a:visited {
+  color: aquamarine;
 }
 
 p > .heading {
-    font-size: 26pt;
-    margin-bottom: 10px;;
+  font-size: 26pt;
+  margin-bottom: 10px;
 }
-

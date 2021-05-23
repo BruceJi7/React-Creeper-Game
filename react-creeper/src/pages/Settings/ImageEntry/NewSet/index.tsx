@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import firebase from "firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-
-import { auth, firestore } from "../../../../firebase/fireinstance";
 
 import style from "./NewSet.module.css";
+import { toast } from "react-toastify";
 
 type Props = {
   uid: string | undefined;
@@ -30,6 +27,7 @@ function NewSet({ existingNames, uid, imagesRef }: Props) {
             images: [],
             user: uid,
           });
+          toast.success(`Set "${title}" created!`);
         }
       }
       setTitle("");

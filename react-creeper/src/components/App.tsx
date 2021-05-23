@@ -1,5 +1,8 @@
 import { Switch, Route } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import About from "../pages/About";
 import Game from "../pages/Game";
 import Settings from "../pages/Settings";
@@ -24,6 +27,14 @@ const App = () => {
           <Settings />
         </Route>
       </Switch>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+      />
     </div>
   );
 };

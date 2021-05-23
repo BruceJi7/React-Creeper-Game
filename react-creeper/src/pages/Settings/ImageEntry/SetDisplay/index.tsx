@@ -12,6 +12,7 @@ type Props = {
   isNew?: boolean;
   title: string;
   cards: string[];
+  setImageCount: (_: number) => void;
   imagesRef: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
 };
 
@@ -39,10 +40,8 @@ function ImageCell({
   );
 }
 
-function SetDisplay({ isNew, title }: Props) {
+function SetDisplay({ setImageCount, title }: Props) {
   const [cardInput, setCardInput] = useState("");
-  const [ID, setID] = useState(null);
-
   const [displayImages, setDisplayImages] = useState<any>(null);
 
   const [user] = useAuthState(auth);
@@ -53,23 +52,26 @@ function SetDisplay({ isNew, title }: Props) {
     .where("setName", "==", title);
   const [userDoc] = useCollectionData(query);
 
+  // UseEffect to load images ready to display
   useEffect(() => {
     if (userDoc !== undefined) {
       const userSet = userDoc as unknown as imageSet[];
-      setDisplayImages(userSet[0]);
+      setDisplayImages(userSet[0].images);
     }
   }, [userDoc]);
 
-  function deleteImage(imgURL: string) {
-    const filteredImages = displayImages.images.filter(
-      (i: string) => i !== imgURL
-    );
+  // UseEffect to get the image count to update
+  useEffect(() => {
+    if (displayImages?.length) {
+      setImageCount(displayImages?.length);
+      const box = document.getElementById("card-box");
+      if (box) {
+        box.scrollLeft = 9000;
+      }
+    }
+  }, [displayImages?.length, setImageCount]);
 
-    imagesRef.doc(`${user?.uid}_${title}`).update({
-      images: filteredImages,
-    });
-  }
-
+  // useEffect to instantly add image to the set if valid
   useEffect(() => {
     if (cardInput) {
       if (
@@ -79,24 +81,37 @@ function SetDisplay({ isNew, title }: Props) {
         cardInput.endsWith(".jpeg")
       ) {
         imagesRef.doc(`${user?.uid}_${title}`).update({
-          images: [...displayImages.images, cardInput],
+          images: [...displayImages, cardInput],
         });
         setCardInput("");
       }
     }
-  }, [cardInput]);
+  }, [cardInput, displayImages, imagesRef, title, user?.uid]);
+
+  function deleteImage(imgURL: string) {
+    const filteredImages = displayImages.filter((i: string) => i !== imgURL);
+
+    imagesRef.doc(`${user?.uid}_${title}`).update({
+      images: filteredImages,
+    });
+  }
 
   return (
     <div className={style.SetDisplay}>
-      <div className={style.title}>{title}</div>
-      <div className={style.cardBox}>
-        {displayImages?.images?.map((c: any) => {
-          return (
-            <div className={style.card} key={c}>
-              <ImageCell imgSrc={c} deleteImage={deleteImage} />
-            </div>
-          );
-        })}
+      <div className={style.cardBox} id="card-box">
+        {displayImages?.length > 0 ? (
+          displayImages?.map((c: any) => {
+            return (
+              <div className={style.card} key={c}>
+                <ImageCell imgSrc={c} deleteImage={deleteImage} />
+              </div>
+            );
+          })
+        ) : (
+          <div className={style.card}>
+            <div className={style.nullCard}>No cards loaded!</div>
+          </div>
+        )}
       </div>
       <input
         className={style.newCardEntry}

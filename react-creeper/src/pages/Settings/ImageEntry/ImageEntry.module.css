@@ -10,7 +10,36 @@
   margin: 20px 0;
 }
 
+.selectControls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectControls select {
+  width: 180px;
+}
+
 .setsBox {
   width: 100%;
-  height: 240px;
+}
+
+.signOutButton {
+  justify-self: flex-end;
+}
+
+.enough {
+  color: green;
+  font-size: 18pt;
+  background-color: #444;
+  border: 4px solid #bbb;
+  border-radius: 5px;
+  padding: 0 15px;
+}
+.notEnough {
+  font-size: 18pt;
+  color: tomato;
+  background-color: #444;
+  border: 4px solid #bbb;
+  border-radius: 5px;
+  padding: 0 15px;
 }
