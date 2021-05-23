@@ -14,7 +14,6 @@ function useGetSets() {
         await ref.where("setName", "==", setTitle).get()
       ).docs[0].ref;
       setDoc.update({ images: cards });
-      console.log("Hook used to update");
     }
     return null;
   };

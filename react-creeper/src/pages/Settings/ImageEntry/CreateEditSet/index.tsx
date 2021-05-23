@@ -17,25 +17,16 @@ function CreateEditSet({ mode }: { mode: "add" | "edit" }) {
     const userImages = splitCleanly(formText);
     if (user) {
       if (!name) {
-        console.log("No name added");
         return;
       }
       if (userImages.length >= 16) {
         const userCollection = firestore.collection(user.uid);
-        userCollection
-          .add({
-            user: user.uid,
-            setName: name,
-            images: userImages,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          })
-          .then((resp) => {
-            console.log(resp);
-            // setFormText("")
-          });
-        // Probably need a sort of notification for success or failure or w/e
-      } else {
-        console.log("Not enough images");
+        userCollection.add({
+          user: user.uid,
+          setName: name,
+          images: userImages,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
       }
     }
   }

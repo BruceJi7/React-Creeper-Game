@@ -26,7 +26,6 @@ function ImageEntry() {
   const [userSets] = useCollectionData(query);
 
   function handleSelect() {
-    console.log(selectedSet?.images?.length);
     if (imageCount < 16) {
       toast.error("Can't play with less than 16 images!");
     } else {
